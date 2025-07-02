@@ -12,7 +12,37 @@
             href="styles.css"
         />
     </head>
-    <body class="p-5">
-        Hello Tailwind CSS
+    <body class="bg-zinc-50 text-zinc-800">
+        <nav class="px-8 py-4">
+            <ul class="flex gap-10 text-sm justify-end">
+                <li>
+                    <a
+                        class="hover:underline focus:underline"
+                        href="#"
+                        >Dashboard</a
+                    >
+                </li>
+                <li>
+                    <a
+                        class="hover:underline focus:underline"
+                        href="#"
+                        >Bookmarks</a
+                    >
+                </li>
+                <li>
+                    <button class="hover:underline focus:underline">Logout</button>
+                </li>
+            </ul>
+        </nav>
+        <main class="p-8">
+            <h1 class="font-bold text-4xl text-amber-600">Talento</h1>
+            <p class="mt-1 text-zinc-500">Discover roles worth your skills</p>
+
+            <input
+                class="bg-white border border-zinc-300 mt-6 rounded-md w-full px-5 py-2 focus:outline-none focus:ring-2 focus:ring-amber-500"
+                type="text"
+                placeholder="Search for roles, companies and type..."
+            />
+        </main>
     </body>
 </html>
