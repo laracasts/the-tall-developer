@@ -1,0 +1,1 @@
+This repo contains the source code for each episode of the "The TALL Developer" Laracasts series. Each branch in this repo, named after the episode number in the series, contains the source code as it is at the end of that video.
