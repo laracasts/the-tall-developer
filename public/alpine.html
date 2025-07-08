@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Alpine JS</title>
+        <link
+            rel="stylesheet"
+            href="styles.css"
+        />
+        <script
+            defer
+            src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+        ></script>
+    </head>
+    <body>
+        <!-- <div x-data="{year: new Date().getFullYear() }">Copyrights &copy; <span x-text="year"></span></div> -->
+        <!-- <div x-data="{show: false}">
+            <button
+                @click="show = !show"
+                class="bg-gray-100 border border-gray-200 p-3"
+            >
+                Show / Hide
+            </button>
+            <p x-show="show">This message is either shown or hidden</p>
+        </div> -->
+
+        <!-- <div x-data="{success: false}">
+            <p
+                class="p-1"
+                :class="success ? 'bg-green-300' : 'bg-red-300'"
+            >
+                An alert here
+            </p>
+        </div> -->
+
+        <div x-data="{name: ''}">
+            <input
+                type="text"
+                class="p-2 border border-gray-200"
+                placeholder="Type your Full Name"
+                x-model="name"
+            />
+            <p
+                class="text-sm text-red-400 mt-1"
+                :class="name.length > 0 ? 'hidden' : 'block'"
+            >
+                This is a required field
+            </p>
+        </div>
+    </body>
+</html>
