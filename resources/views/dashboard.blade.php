@@ -12,6 +12,7 @@
                 placeholder="Search for roles, companies and type..."
             />
 
+            @foreach ($roles as $role)
             <div
                 x-data="{bookmarked: false}"
                 class="mt-8"
@@ -42,15 +43,15 @@
                             </svg>
                         </button>
 
-                        <p class="text-sm text-amber-600">Acme Corporation</p>
+                        <p class="text-sm text-amber-600">{{ $role->company }}</p>
                     </div>
 
-                    <p class="mt-1 font-semibold text-xl">Fullstack Developer</p>
+                    <p class="mt-1 font-semibold text-xl">{{ $role->title }}</p>
 
                     <p class="flex gap-1 text-zinc-600 text-sm">
-                        <span>Remote</span>
+                        <span>{{ $role->location }}</span>
                         <span>&middot;</span>
-                        <span>Part-time</span>
+                        <span>{{ $role->type }}</span>
                     </p>
 
                     <div x-data="{showDetails: false}">
@@ -64,10 +65,7 @@
 
                         <div x-show="showDetails">
                             <p class="text-sm mt-2">
-                                As a Fullstack Developer at Acme Corporation, you'll build and maintain modern web
-                                applications using both frontend and backend technologies. You'll collaborate closely
-                                with designers and engineers to deliver seamless user experiences and scalable,
-                                maintainable systems.
+                                {{ $role->details }}
                             </p>
                             <button
                                 class="mt-2 bg-zinc-200 px-4 py-1 text-sm rounded-md hover:bg-zinc-300 hover:cursor-pointer"
@@ -79,6 +77,8 @@
                     </div>
                 </div>
             </div>
+            @endforeach
+
             <div
                 x-show="showToast"
                 class="fixed bottom-5 right-5 px-2 py-1 bg-green-100 text-green-800 border border-green-200 text-sm shadow rounded"
