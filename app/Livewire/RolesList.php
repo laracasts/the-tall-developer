@@ -9,6 +9,7 @@ class RolesList extends Component
 {
     public $roles = [];
     public string $type = 'all';
+    public string $search = '';
 
     public function mount()
     {
@@ -17,6 +18,26 @@ class RolesList extends Component
             return;
         }
         $this->roles = Role::all();
+    }
+
+    public function updatedSearch()
+    {
+        $query = Role::query();
+
+        if ($this->type == "bookmarked") {
+            $query->whereAttachedTo(auth()->user());
+        }
+
+        if ($this->search) {
+            $query->where(function ($q) {
+                $q->where('title', 'like', '%' . $this->search . '%')
+                    ->orWhere('company', 'like', '%' . $this->search . '%')
+                    ->orWhere('location', 'like', '%' . $this->search . '%')
+                    ->orWhere('type', 'like', '%' . $this->search . '%');
+            });
+        }
+
+        $this->roles = $query->get();
     }
 
     public function toggleBookmark($role_id)
