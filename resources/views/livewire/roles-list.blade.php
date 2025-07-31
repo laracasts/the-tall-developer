@@ -15,10 +15,4 @@
     @foreach ($roles as $role)
         <x-role :role="$role" />
     @endforeach
-
-    <div
-        x-show="showToast"
-        class="fixed bottom-5 right-5 px-2 py-1 bg-green-100 text-green-800 border border-green-200 text-sm shadow rounded"
-        x-text="message"
-    ></div>
 </div>

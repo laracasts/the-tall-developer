@@ -37,5 +37,7 @@
             </ul>
         </nav>
         {{ $slot }}
+
+        <x-toast />
     </body>
 </html>

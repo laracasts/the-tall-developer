@@ -42,7 +42,16 @@ class RolesList extends Component
 
     public function toggleBookmark($role_id)
     {
-        auth()->user()->bookmarkedRoles()->toggle($role_id);
+        $role = Role::find($role_id);
+
+        if ($role->isBookmarkedBy(auth()->user())) {
+            auth()->user()->bookmarkedRoles()->detach($role_id);
+            $this->dispatch('show-toast', message: "Removed from Bookmarks");
+        } else {
+            auth()->user()->bookmarkedRoles()->attach($role_id);
+            $this->dispatch('show-toast', message: "Added to Bookmarks");
+        }
+
         if ($this->type == "bookmarked") {
             $this->roles = auth()->user()->bookmarkedRoles;
         }

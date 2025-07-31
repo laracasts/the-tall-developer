@@ -46,7 +46,10 @@
                             View Details
                         </button>
 
-                        <div x-show="showDetails">
+                        <div
+                            x-cloak
+                            x-show="showDetails"
+                        >
                             <p class="text-sm mt-2">
                                 {{ $role->details }}
                             </p>
