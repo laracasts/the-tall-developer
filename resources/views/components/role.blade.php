@@ -4,29 +4,42 @@
             >
                 <div class="bg-white p-6 rounded-lg shadow-xs border border-zinc-200">
                     <div class="flex flex-row-reverse justify-between items-center">
-                        <button
-                            class="hover:text-amber-600"
-                            :class="bookmarked ? 'text-amber-500' : 'text-zinc-200'"
-                            @click="
-                            bookmarked = !bookmarked;
-                            showToast = true;
-                            setTimeout(() => showToast = false, 3000);
-                            message = bookmarked ? 'Added to bookmarks' : 'Removed from bookmarks'
-                            "
+                        <form
+                            method="post"
+                            @if(!$role->isBookmarkedBy(auth()->user()))
+                                action="{{ route('bookmarks.store', $role) }}"
+                            @else
+                                action="{{ route('bookmarks.destroy', $role) }}"
+                            @endif
                         >
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                class="size-5"
+                            @csrf
+                            @if($role->isBookmarkedBy(auth()->user()))
+                                @method('DELETE')
+                            @endif
+                            <button
+                                class="hover:text-amber-600"
+                                :class="bookmarked ? 'text-amber-500' : 'text-zinc-200'"
+                                {{-- @click="
+                                bookmarked = !bookmarked;
+                                showToast = true;
+                                setTimeout(() => showToast = false, 3000);
+                                message = bookmarked ? 'Added to bookmarks' : 'Removed from bookmarks' --}}
+                                "
                             >
-                                <path
-                                    fill-rule="evenodd"
-                                    d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
-                                    clip-rule="evenodd"
-                                />
-                            </svg>
-                        </button>
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    class="size-5"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        d="M6.32 2.577a49.255 49.255 0 0 1 11.36 0c1.497.174 2.57 1.46 2.57 2.93V21a.75.75 0 0 1-1.085.67L12 18.089l-7.165 3.583A.75.75 0 0 1 3.75 21V5.507c0-1.47 1.073-2.756 2.57-2.93Z"
+                                        clip-rule="evenodd"
+                                    />
+                                </svg>
+                            </button>
+                        </form>
 
                         <p class="text-sm text-amber-600">{{ $role->company }}</p>
                     </div>

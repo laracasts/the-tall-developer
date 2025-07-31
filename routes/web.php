@@ -19,6 +19,14 @@ Route::get('bookmarks', [BookmarkController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('bookmarks.index');
 
+Route::post('bookmarks/{role}', [BookmarkController::class, 'store'])
+    ->middleware(['auth', 'verified'])
+    ->name('bookmarks.store');
+
+Route::delete('bookmarks/{role}', [BookmarkController::class, 'destroy'])
+    ->middleware(['auth', 'verified'])
+    ->name('bookmarks.destroy');
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
