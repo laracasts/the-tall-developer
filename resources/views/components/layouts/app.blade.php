@@ -28,7 +28,7 @@
                 <li>
                     <a
                         class="hover:underline focus:underline"
-                        href="{{ route('bookmarks') }}"
+                        href="{{ route('bookmarks.index') }}"
                         >Bookmarks</a
                     >
                 </li>

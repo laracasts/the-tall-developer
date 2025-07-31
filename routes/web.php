@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\RoleController;
 use App\Livewire\Settings\Appearance;
 use App\Livewire\Settings\Password;
@@ -14,9 +15,9 @@ Route::get('dashboard', RoleController::class)
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::view('bookmarks', 'bookmarks')
+Route::get('bookmarks', [BookmarkController::class, 'index'])
     ->middleware(['auth', 'verified'])
-    ->name('bookmarks');
+    ->name('bookmarks.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
